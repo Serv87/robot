@@ -1,0 +1,305 @@
+#include <SoftwareSerial.h>//Библтотека WIFI
+#include <Servo.h>//Библиотека сервы
+Servo zahvat;
+SoftwareSerial mySerial(8,9);//Пины для связи
+int val;
+
+int FL1=3;//пины на моторы
+int FL2=2;
+int FR1=4;
+int FR2=5;
+int RL1=7;
+int RL2=6;
+int RR1=10;
+int RR2=11;
+void setup() {
+  // put your setup code here, to run once: 
+zahvat.attach(A2);//захват
+mySerial.begin(9600);
+Serial.begin(9600);//связь
+pinMode(12,OUTPUT);
+digitalWrite(12,HIGH);
+
+pinMode(FL1,OUTPUT);
+pinMode(FL2,OUTPUT);
+pinMode(FR1,OUTPUT);
+pinMode(FR2,OUTPUT);
+pinMode(RL1,OUTPUT);
+pinMode(RL2,OUTPUT);
+pinMode(RR1,OUTPUT);
+pinMode(RR2,OUTPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if(mySerial.available())
+  {
+   // Serial.write(mySerial.read());
+  }
+ if (mySerial.available())
+ {
+    val = mySerial.read();
+    Serial.println(val);
+    if (val=='1')// сигнал от WIFI
+    {
+      
+digitalWrite(FL1,HIGH);//движение вперед
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,HIGH);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,HIGH);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,HIGH);
+digitalWrite(RR2,LOW);
+    }
+   else if(val=='2')
+   {
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);  
+   }
+   if (val=='3')
+    {
+      
+digitalWrite(FL1,LOW);//Движение назад
+digitalWrite(FL2,HIGH);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,HIGH);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,HIGH);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,HIGH);
+    }
+   else if(val=='2')
+   {
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);  
+   }
+   if (val=='4')
+    {
+      
+digitalWrite(FL1,LOW);//движение вправо
+digitalWrite(FL2,HIGH);
+digitalWrite(FR1,HIGH);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,HIGH);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,HIGH);
+    }
+   else if(val=='2')
+   {
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);  
+   }
+    if (val=='5')
+    {
+      
+digitalWrite(FL1,HIGH);//движение влево
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,HIGH);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,HIGH);
+digitalWrite(RR1,HIGH);
+digitalWrite(RR2,LOW);;
+    }
+   else if(val=='2')
+   {
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);  
+   }
+   if (val=='6')
+    {
+      
+digitalWrite(FL1,HIGH);//разворот вправо
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,HIGH);
+digitalWrite(RL1,HIGH);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,HIGH);
+    }
+   else if(val=='2')
+   {
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);  
+   }
+   if (val=='7')
+    {
+      
+digitalWrite(FL1,LOW);//разворот влево
+digitalWrite(FL2,HIGH);
+digitalWrite(FR1,HIGH);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,HIGH);
+digitalWrite(RR1,HIGH);
+digitalWrite(RR2,LOW);
+delay(1000);
+    }
+   else if(val=='2')
+   {
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);  
+   }
+   if (val=='8')
+    {
+      
+zahvat.write(0);//захват угол
+    }
+   else if(val=='9')
+   {
+  zahvat.write(70);//захват угол
+   }
+ }
+
+/*
+zahvat.write(0);//захват угол
+digitalWrite(FL1,HIGH);//движение вперед
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,HIGH);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,HIGH);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,HIGH);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,LOW);//Движение назад
+digitalWrite(FL2,HIGH);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,HIGH);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,HIGH);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,HIGH);
+delay(1000);
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,HIGH);//движение влево
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,HIGH);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,HIGH);
+digitalWrite(RR1,HIGH);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,LOW);//движение вправо
+digitalWrite(FL2,HIGH);
+digitalWrite(FR1,HIGH);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,HIGH);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,HIGH);
+delay(1000);
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,HIGH);//разворот вправо
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,HIGH);
+digitalWrite(RL1,HIGH);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,HIGH);
+delay(1000);
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,LOW);//разворот влево
+digitalWrite(FL2,HIGH);
+digitalWrite(FR1,HIGH);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,HIGH);
+digitalWrite(RR1,HIGH);
+digitalWrite(RR2,LOW);
+delay(1000);
+digitalWrite(FL1,LOW);//стоп
+digitalWrite(FL2,LOW);
+digitalWrite(FR1,LOW);
+digitalWrite(FR2,LOW);
+digitalWrite(RL1,LOW);
+digitalWrite(RL2,LOW);
+digitalWrite(RR1,LOW);
+digitalWrite(RR2,LOW);
+delay(1000);
+*/
+}
